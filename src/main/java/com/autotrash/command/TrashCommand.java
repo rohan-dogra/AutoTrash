@@ -131,8 +131,8 @@ public class TrashCommand {
             player.sendMessage(Component.text("Your trash list is empty.", NamedTextColor.YELLOW));
         } else {
             String list = items.stream()
-                    .map(m -> m.name().toLowerCase())
-                    .sorted()
+                    .sorted(Comparator.comparing(Material::name))
+                    .map(MaterialUtil::formatName)
                     .collect(Collectors.joining(", "));
             player.sendMessage(Component.text("Trashed items: ", NamedTextColor.GOLD)
                     .append(Component.text(list, NamedTextColor.WHITE)));
