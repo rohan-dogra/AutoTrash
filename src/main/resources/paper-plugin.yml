@@ -1,0 +1,13 @@
+name: AutoTrash
+version: "${version}"
+main: com.autotrash.AutoTrash
+description: "${description}"
+api-version: "1.20.6"
+
+permissions:
+  autotrash.use:
+    description: "Use /autotrash to manage trashed items"
+    default: true
+  autotrash.admin:
+    description: "Manage server-wide autotrash settings"
+    default: op

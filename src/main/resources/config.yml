@@ -1,0 +1,4 @@
+# AutoTrash config
+
+# Number of items shown in the "Most Trashed" GUI
+most-trashed-limit: 45
