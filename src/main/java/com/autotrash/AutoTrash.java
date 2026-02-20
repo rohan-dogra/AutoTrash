@@ -41,6 +41,8 @@ public final class AutoTrash extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(this), this);
         getServer().getPluginManager().registerEvents(new GuiListener(), this);
 
+        new Metrics(this, 29664);
+
         getLogger().info("AutoTrash enabled.");
     }
 

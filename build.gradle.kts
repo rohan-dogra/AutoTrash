@@ -25,7 +25,6 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
-    implementation("org.bstats:bstats-bukkit:3.1.0")
 }
 
 tasks {
@@ -48,13 +47,6 @@ tasks {
     shadowJar {
         archiveBaseName = "AutoTrash"
         archiveClassifier = ""
-        configurations = project.configurations.runtimeClasspath.map { setOf(it) }
-
-        dependencies {
-            exclude { it.moduleGroup != "org.bstats" }
-        }
-
-        relocate("org.bstats", project.group.toString())
     }
 
     build {
