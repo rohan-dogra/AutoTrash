@@ -66,7 +66,13 @@ tasks {
         dependsOn(shadowJar)
     }
 
+    // Test on any supported version: ./gradlew runServer -PmcVersion=26.3
     runServer {
-        minecraftVersion("1.21.11")
+        val mcVersion = providers.gradleProperty("mcVersion").getOrElse("1.21.11")
+        minecraftVersion(mcVersion)
+        // 26.x servers require Java 25; older ones run on Java 21.
+        javaLauncher = project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(if (mcVersion.startsWith("1.")) 21 else 25)
+        }
     }
 }
