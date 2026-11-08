@@ -15,7 +15,10 @@ When an item is added to the trash list, it will be automatically deleted when p
 
 ## Requirements
 
-- Paper or Purpur 1.20.6+
+- Paper or Purpur, Minecraft 1.20.6 through 26.3
+- Java 21 or newer (Minecraft 26.x servers require Java 25)
+
+The same jar works on every supported version.
 
 ## Commands
 
