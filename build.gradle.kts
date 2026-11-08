@@ -2,6 +2,7 @@ plugins {
     `java-library`
     id("xyz.jpenilla.run-paper") version "3.1.0"
     id("com.gradleup.shadow") version "9.6.1"
+    id("com.modrinth.minotaur") version "2.10.0"
 }
 
 group = property("group") as String
@@ -17,6 +18,14 @@ description = "Automatically trash unwanted items on pickup"
 //   ./gradlew compileJava -PpaperApi=26.3.build.+ -PjavaVersion=25
 val paperApi = providers.gradleProperty("paperApi").getOrElse("1.21.11-R0.1-SNAPSHOT")
 val javaVersion = providers.gradleProperty("javaVersion").getOrElse("21").toInt()
+
+// Minecraft versions advertised on Modrinth. Add new versions here once tested.
+val supportedGameVersions = listOf(
+    "1.20.6",
+    "1.21", "1.21.1", "1.21.2", "1.21.3", "1.21.4", "1.21.5", "1.21.6",
+    "1.21.7", "1.21.8", "1.21.9", "1.21.10", "1.21.11",
+    "26.1", "26.1.1", "26.1.2", "26.2", "26.3",
+)
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
@@ -75,4 +84,17 @@ tasks {
             languageVersion = JavaLanguageVersion.of(if (mcVersion.startsWith("1.")) 21 else 25)
         }
     }
+}
+
+modrinth {
+    token = providers.environmentVariable("MODRINTH_TOKEN")
+    projectId = "X9IcZoco"
+    versionNumber = project.version.toString()
+    versionType = providers.environmentVariable("MODRINTH_VERSION_TYPE").orElse("release")
+    changelog = providers.environmentVariable("MODRINTH_CHANGELOG").orElse("")
+    uploadFile.set(tasks.shadowJar)
+    gameVersions.addAll(supportedGameVersions)
+    loaders.addAll("paper", "purpur")
+    // ./gradlew modrinth -PmodrinthDryRun prints the upload instead of publishing it.
+    debugMode = providers.gradleProperty("modrinthDryRun").isPresent
 }
