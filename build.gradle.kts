@@ -44,6 +44,12 @@ tasks {
         }
     }
 
+    // Keep the plain jar from colliding with the shadow jar's file name
+    // (autotrash-x.jar vs AutoTrash-x.jar are the same file on Windows/macOS).
+    jar {
+        archiveClassifier = "plain"
+    }
+
     shadowJar {
         archiveBaseName = "AutoTrash"
         archiveClassifier = ""
