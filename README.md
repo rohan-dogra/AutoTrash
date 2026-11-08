@@ -5,7 +5,7 @@
 </p>
 
 ![GitHub Release](https://img.shields.io/github/v/release/rohan-dogra/AutoTrash?label=version) ![bStats Servers](https://img.shields.io/bstats/servers/29664)
-<!-- [![Modrinth Downloads](https://img.shields.io/modrinth/dt/MODRINTH_ID?logo=modrinth)](https://modrinth.com/plugin/autotrash) -->
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/X9IcZoco?logo=modrinth)](https://modrinth.com/plugin/autotrash)
 
 A PaperMC plugin that lets players automatically trash unwanted items on pickup. Each player manages their own trash list through an in-game GUI or commands.
 
