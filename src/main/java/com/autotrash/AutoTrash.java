@@ -7,6 +7,7 @@ import com.autotrash.listener.ItemPickupListener;
 import com.autotrash.listener.PlayerConnectionListener;
 import com.autotrash.storage.DatabaseManager;
 import com.autotrash.storage.TrashRepository;
+import com.autotrash.util.MaterialUtil;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -40,6 +41,8 @@ public final class AutoTrash extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ItemPickupListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(this), this);
         getServer().getPluginManager().registerEvents(new GuiListener(), this);
+
+        MaterialUtil.getPickupMaterials(); // build the item list now, not on the first GUI open
 
         new Metrics(this, 29664);
 
