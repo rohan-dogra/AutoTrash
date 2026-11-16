@@ -79,7 +79,7 @@ public class TrashCommand {
             return Command.SINGLE_SUCCESS;
         }
 
-        if (!material.isItem()) {
+        if (material.isLegacy() || !material.isItem()) {
             player.sendMessage(Component.text("That material is not a pickup-able item.", NamedTextColor.RED));
             return Command.SINGLE_SUCCESS;
         }
