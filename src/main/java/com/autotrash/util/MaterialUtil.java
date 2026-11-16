@@ -16,9 +16,9 @@ public final class MaterialUtil {
 
     static {
         PICKUP_MATERIALS = Arrays.stream(Material.values())
+                .filter(m -> !m.isLegacy())
                 .filter(Material::isItem)
                 .filter(m -> !m.isAir())
-                .filter(m -> !m.name().startsWith("LEGACY_"))
                 .sorted(Comparator.comparing(Material::name))
                 .collect(Collectors.toUnmodifiableList());
     }
